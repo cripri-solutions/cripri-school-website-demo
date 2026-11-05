@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="CRIPRI School Administrator Dashboard interface prototype.">
+  <title>Administrator Dashboard Preview | CRIPRI</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { background:#f3f6f9; }
+    .portal-shell { min-height:100vh; display:grid; grid-template-columns:250px minmax(0,1fr); }
+    .portal-side { padding:26px 18px; color:#fff; background:#102f49; }
+    .portal-brand { display:flex; align-items:center; gap:11px; padding:0 8px 28px; color:#fff; font-weight:800; text-decoration:none; }
+    .portal-brand-mark { display:grid; place-items:center; width:38px; height:38px; border-radius:11px; color:#102f49; background:#f2b84b; }
+    .portal-nav-label { margin:20px 10px 8px; color:#9fb3c3; font-size:.7rem; font-weight:800; letter-spacing:.13em; text-transform:uppercase; }
+    .portal-nav a { display:block; margin:4px 0; padding:10px 12px; border-radius:8px; color:#e4edf3; font-size:.92rem; text-decoration:none; }
+    .portal-nav a.active, .portal-nav a:hover { color:#fff; background:#214966; }
+    .portal-main { min-width:0; }
+    .portal-top { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:18px clamp(18px,4vw,42px); border-bottom:1px solid #e0e7ed; background:#fff; }
+    .portal-top small { display:block; color:#687887; }
+    .demo-tag { display:inline-block; padding:6px 10px; border-radius:30px; color:#79520a; background:#fff0cf; font-size:.75rem; font-weight:800; }
+    .portal-content { max-width:1200px; margin:auto; padding:clamp(20px,4vw,42px); }
+    .portal-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:25px; }
+    .portal-heading h1 { margin:0 0 7px; color:#123b5d; font-size:clamp(1.8rem,4vw,2.5rem); letter-spacing:-.03em; }
+    .portal-heading p { margin:0; color:#687887; }
+    .portal-cards { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; margin-bottom:24px; }
+    .portal-card, .portal-panel { padding:21px; border:1px solid #e1e8ed; border-radius:14px; background:#fff; box-shadow:0 8px 24px rgba(18,59,93,.045); }
+    .portal-card span { display:block; color:#687887; font-size:.85rem; }
+    .portal-card strong { display:block; margin-top:7px; color:#123b5d; font-size:1.65rem; }
+    .portal-card em { color:#8b98a3; font-size:.78rem; font-style:normal; }
+    .portal-columns { display:grid; grid-template-columns:1.3fr 1fr; gap:18px; }
+    .portal-panel h2 { margin:0 0 17px; font-size:1.15rem; }
+    .portal-list { list-style:none; margin:0; padding:0; }
+    .portal-list li { display:flex; justify-content:space-between; gap:15px; padding:13px 0; border-top:1px solid #edf1f4; }
+    .portal-list li:first-child { border-top:0; }
+    .portal-list strong { display:block; color:#263746; font-size:.92rem; }
+    .portal-list small { color:#7a8792; }
+    .portal-status { align-self:center; padding:4px 8px; border-radius:20px; color:#79520a; background:#fff0cf; font-size:.72rem; white-space:nowrap; }
+    .portal-shortcuts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .portal-shortcut { padding:14px; border:1px solid #e1e8ed; border-radius:10px; color:#123b5d; font-size:.88rem; font-weight:700; }
+    .portal-shortcut span { display:block; margin-bottom:5px; font-size:1.2rem; }
+    .portal-photo { display:block; width:100%; height:190px; margin:0 0 22px; object-fit:cover; border-radius:14px; box-shadow:0 8px 24px rgba(18,59,93,.08); }
+    .portal-notice { margin:0 0 22px; padding:13px 16px; border-left:4px solid #e4aa37; border-radius:7px; color:#6d521c; background:#fff7e6; font-size:.88rem; }
+    .portal-footer { padding:22px clamp(18px,4vw,42px); color:#71808c; font-size:.8rem; }
+    @media(max-width:950px) { .portal-cards { grid-template-columns:repeat(2,minmax(0,1fr)); } .portal-columns { grid-template-columns:1fr; } }
+    @media(max-width:650px) { .portal-shell { grid-template-columns:1fr; } .portal-side { padding:15px; } .portal-brand { padding-bottom:12px; } .portal-nav { display:flex; flex-wrap:wrap; gap:3px; } .portal-nav-label { display:none; } .portal-nav a { padding:8px 10px; font-size:.82rem; } .portal-heading { display:block; } .portal-heading .demo-tag { margin-top:14px; } .portal-cards { gap:10px; } .portal-card { padding:15px; } .portal-card strong { font-size:1.35rem; } }
+  </style>
+</head>
+<body>
+  <div class="portal-shell">
+    <aside class="portal-side">
+      <a class="portal-brand" href="index.html"><span class="portal-brand-mark">C</span><span>CRIPRI <small>School Platform</small></span></a>
+      <p class="portal-nav-label">Workspace</p>
+      <nav class="portal-nav" aria-label="Dashboard preview navigation">
+        <a class="active" href="#overview">Overview</a>
+        <a href="#website">Website profile</a>
+        <a href="#announcements">Announcements</a>
+        <a href="#admissions">Admissions</a>
+        <a href="#settings">Settings</a>
+      </nav>
+      <p class="portal-nav-label">Platform</p>
+      <nav class="portal-nav"><a href="index.html">View public website</a></nav>
+    </aside>
+
+    <main class="portal-main" id="overview">
+      <header class="portal-top">
+        <div><strong>School administrator</strong><small>Sample School Workspace</small></div>
+        <span class="demo-tag">DESIGN PREVIEW · NOT A LIVE PORTAL</span>
+      </header>
+
+      <div class="portal-content">
+        <div class="portal-heading">
+          <div><p class="eyebrow">School workspace</p><h1>Good day, Administrator</h1><p>Here is a sample overview of your school's website workspace.</p></div>
+          <span class="demo-tag">DEMO DATA ONLY</span>
+        </div>
+
+        <img class="portal-photo" src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&amp;fit=crop&amp;w=1600&amp;q=85" alt="A bright classroom during a lesson" loading="lazy">
+        <p class="portal-notice"><strong>Prototype notice:</strong> This page is a public design preview. It has no login, database, save function or real school information. Do not enter confidential information here.</p>
+
+        <section class="portal-cards" aria-label="Example school summary">
+          <article class="portal-card"><span>Website status</span><strong>Preview</strong><em>Sample display only</em></article>
+          <article class="portal-card"><span>Announcements</span><strong>03</strong><em>Illustrative count</em></article>
+          <article class="portal-card"><span>Admission enquiries</span><strong>12</strong><em>Illustrative count</em></article>
+          <article class="portal-card"><span>Profile completion</span><strong>80%</strong><em>Illustrative progress</em></article>
+        </section>
+
+        <div class="portal-columns">
+          <section class="portal-panel" id="announcements">
+            <h2>Recent website activity</h2>
+            <ul class="portal-list">
+              <li><div><strong>Welcome message</strong><small>School profile · Sample item</small></div><span class="portal-status">Draft</span></li>
+              <li><div><strong>Term opening notice</strong><small>Announcement · Sample item</small></div><span class="portal-status">Review</span></li>
+              <li><div><strong>Admissions information</strong><small>Website content · Sample item</small></div><span class="portal-status">Draft</span></li>
+            </ul>
+          </section>
+
+          <section class="portal-panel" id="website">
+            <h2>Website management</h2>
+            <div class="portal-shortcuts">
+              <div class="portal-shortcut"><span>▣</span>School profile</div>
+              <div class="portal-shortcut"><span>✦</span>Logo and colours</div>
+              <div class="portal-shortcut"><span>▤</span>Pages and content</div>
+              <div class="portal-shortcut"><span>◷</span>News and events</div>
+              <div class="portal-shortcut"><span>✉</span>Contact details</div>
+              <div class="portal-shortcut"><span>⚙</span>Portal settings</div>
+            </div>
+          </section>
+
+          <section class="portal-panel" id="admissions">
+            <h2>Admissions workspace</h2>
+            <p style="color:#687887;margin-bottom:0">A future secure admissions module can receive enquiries, track application progress and restrict access to authorised school staff.</p>
+          </section>
+
+          <section class="portal-panel" id="settings">
+            <h2>Account and security</h2>
+            <p style="color:#687887;margin-bottom:0">A future live portal will use verified administrator sign-in, role permissions, school-specific data access and audit records.</p>
+          </section>
+        </div>
+      </div>
+      <footer class="portal-footer">CRIPRI Technologies · Universal School Website Platform · Interface concept</footer>
+    </main>
+  </div>
+</body>
+</html>
