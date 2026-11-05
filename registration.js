@@ -51,12 +51,12 @@
       school_name: schoolName,
       school_category: form.elements.school_category.value,
       country: form.elements.country.value.trim(),
-      region: form.elements.region.value.trim(),
+      county: form.elements.region.value.trim(),
       physical_address: form.elements.physical_address.value.trim(),
       contact_person: form.elements.contact_person.value.trim(),
       contact_role: form.elements.contact_role.value,
       contact_email: form.elements.contact_email.value.trim().toLowerCase(),
-      contact_phone: form.elements.contact_phone.value.trim(),
+      phone: form.elements.contact_phone.value.trim(),
       requested_slug: requestedSlug,
       message: form.elements.message.value.trim() || null
     };
