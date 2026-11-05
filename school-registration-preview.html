@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register Your School | CRIPRI Technologies</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { background:#f3f6f9; }
+    .reg-wrap { width:min(900px,calc(100% - 32px)); margin:38px auto; }
+    .reg-top { display:flex; align-items:center; justify-content:space-between; gap:18px; margin-bottom:24px; }
+    .reg-brand { display:flex; align-items:center; gap:10px; color:var(--navy); font-weight:800; text-decoration:none; }
+    .reg-mark { display:grid; place-items:center; width:40px; height:40px; border-radius:11px; background:var(--gold); }
+    .reg-card { padding:clamp(22px,5vw,42px); border:1px solid #e0e7ed; border-radius:18px; background:#fff; box-shadow:0 15px 45px rgba(18,59,93,.07); }
+    .reg-card h1 { margin:0 0 10px; color:var(--navy); font-size:clamp(1.8rem,4vw,2.4rem); }
+    .reg-intro { margin:0 0 25px; color:#657583; line-height:1.7; }
+    .notice { margin:0 0 24px; padding:14px 16px; border-left:4px solid #dfa83b; border-radius:8px; background:#fff7e6; color:#72541b; font-size:.9rem; }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .field { display:flex; flex-direction:column; gap:7px; }
+    .field.full { grid-column:1/-1; }
+    .field label { color:#263746; font-size:.88rem; font-weight:700; }
+    .field input,.field select,.field textarea { width:100%; min-height:46px; padding:11px 12px; border:1px solid #cfd9e1; border-radius:8px; color:#263746; background:#fff; font:inherit; }
+    .field textarea { min-height:95px; resize:vertical; }
+    .field small { color:#7b8994; font-size:.78rem; }
+    .reg-actions { display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-top:25px; }
+    .reg-actions button { min-height:46px; padding:11px 20px; border:0; border-radius:8px; color:#fff; background:#123b5d; font:inherit; font-weight:700; cursor:pointer; }
+    .reg-actions button:disabled { opacity:.6; cursor:wait; }
+    .form-status { min-height:24px; margin:18px 0 0; font-weight:700; }
+    .form-status.error { color:#a12626; }.form-status.success { color:#17633b; }
+    .trap { position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }
+    .reg-foot { margin:22px 0 0; color:#7b8994; font-size:.8rem; text-align:center; }
+    @media(max-width:650px) { .reg-wrap { margin:20px auto; } .reg-top { align-items:flex-start; flex-direction:column; } .form-grid { grid-template-columns:1fr; } .field.full { grid-column:auto; } }
+  </style>
+</head>
+<body>
+  <main class="reg-wrap">
+    <div class="reg-top">
+      <a class="reg-brand" href="index.html"><span class="reg-mark">C</span><span>CRIPRI Technologies<br><small>Universal School Platform</small></span></a>
+      <a href="index.html">← Back to CRIPRI website</a>
+    </div>
+    <section class="reg-card">
+      <p class="eyebrow">School onboarding</p>
+      <h1>Register your school</h1>
+      <p class="reg-intro">Submit your school's details to begin onboarding for an independent school website and secure workspace managed through CRIPRI Technologies.</p>
+      <p class="notice"><strong>Important:</strong> Submitting this form sends an application for CRIPRI review. It does not automatically create or activate a school website. Please submit only information you are authorised to provide.</p>
+      <form id="school-registration-form" novalidate>
+        <div class="form-grid">
+          <div class="field"><label for="school-name">Official school name *</label><input id="school-name" name="school_name" maxlength="160" autocomplete="organization" required></div>
+          <div class="field"><label for="school-type">School category *</label><select id="school-type" name="school_category" required><option value="">Select category</option><option>Primary</option><option>Secondary</option><option>Primary and secondary</option><option>College or other</option></select></div>
+          <div class="field"><label for="country">Country *</label><input id="country" name="country" maxlength="100" autocomplete="country-name" required></div>
+          <div class="field"><label for="county">County / Region *</label><input id="county" name="region" maxlength="120" required></div>
+          <div class="field"><label for="school-email">Official school email *</label><input id="school-email" name="contact_email" type="email" maxlength="254" autocomplete="email" required></div>
+          <div class="field"><label for="school-phone">Official school telephone *</label><input id="school-phone" name="contact_phone" type="tel" maxlength="40" autocomplete="tel" required></div>
+          <div class="field full"><label for="address">School physical / postal address *</label><textarea id="address" name="physical_address" maxlength="500" required></textarea></div>
+          <div class="field"><label for="contact-person">Authorised contact person *</label><input id="contact-person" name="contact_person" maxlength="120" autocomplete="name" required></div>
+          <div class="field"><label for="contact-role">Contact person's role *</label><select id="contact-role" name="contact_role" required><option value="">Select role</option><option>Headteacher / Principal</option><option>Director / Proprietor</option><option>School administrator</option><option>Other authorised representative</option></select></div>
+          <div class="field full"><label for="message">Additional information (optional)</label><textarea id="message" name="message" maxlength="1500" placeholder="Tell us briefly what your school needs."></textarea></div>
+        </div>
+        <div class="trap" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+        <div class="reg-actions"><button id="submit-registration" type="submit">Submit school application</button><a href="portal-preview.html">View platform preview</a></div>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+    <p class="reg-foot">CRIPRI Technologies · Applications are reviewed before any school website is activated.</p>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="registration.js"></script>
+</body>
+</html>
