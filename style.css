@@ -1,0 +1,155 @@
+/* CRIPRI Universal School Website — reusable starter theme.
+   Change colours here to match each school's identity. */
+:root {
+  --navy: #123b5d;
+  --blue: #176b87;
+  --gold: #f2b84b;
+  --ink: #1d2935;
+  --muted: #5c6975;
+  --paper: #ffffff;
+  --soft: #f2f6f8;
+  --line: #dce5ea;
+  --radius: 16px;
+  --shadow: 0 14px 36px rgba(18, 59, 93, .09);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: var(--ink); background: var(--paper); font-family: Arial, Helvetica, sans-serif; line-height: 1.65; }
+a { color: var(--blue); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.container { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+.skip-link { position: absolute; left: -9999px; top: 8px; background: white; padding: 10px; z-index: 20; }
+.skip-link:focus { left: 8px; }
+.site-header { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.97); border-bottom: 1px solid var(--line); }
+.header-inner, .brand, .site-nav, .footer-inner { display: flex; align-items: center; }
+.header-inner { min-height: 76px; justify-content: space-between; gap: 24px; }
+.brand { gap: 12px; color: var(--navy); font-size: 1.05rem; font-weight: 800; text-decoration: none; }
+.brand-mark { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; color: var(--navy); background: var(--gold); }
+.brand-logo { display: block; width: 46px; height: 46px; object-fit: contain; }
+.brand-logo[hidden], .brand-mark[hidden] { display: none; }
+.site-nav { gap: 26px; }
+.site-nav a { color: var(--ink); font-size: .94rem; font-weight: 700; text-decoration: none; }
+.site-nav a:hover, .text-link:hover { color: var(--blue); }
+.site-nav .nav-contact { padding: 10px 17px; color: white; background: var(--navy); border-radius: 8px; }
+.menu-toggle { display: none; padding: 9px 13px; border: 1px solid var(--line); border-radius: 8px; background: white; color: var(--navy); font-weight: 700; }
+.hero { color: white; background: linear-gradient(115deg, rgba(10,39,63,.96), rgba(18,59,93,.82)), linear-gradient(45deg, #176b87, #123b5d); }
+.hero-content { padding-block: clamp(76px, 12vw, 145px); max-width: 1120px; }
+.eyebrow { margin: 0 0 12px; color: var(--blue); font-size: .76rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.hero .eyebrow { color: var(--gold); }
+h1, h2, h3, p { margin-top: 0; }
+h1 { max-width: 760px; margin-bottom: 20px; font-size: clamp(2.5rem, 6vw, 4.7rem); line-height: 1.08; letter-spacing: -.04em; }
+h2 { margin-bottom: 18px; color: var(--navy); font-size: clamp(1.9rem, 4vw, 2.8rem); line-height: 1.16; letter-spacing: -.025em; }
+h3 { margin-bottom: 9px; color: var(--navy); font-size: 1.18rem; }
+.hero-copy { max-width: 620px; color: rgba(255,255,255,.84); font-size: 1.15rem; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 30px; }
+.button { display: inline-block; padding: 12px 19px; border: 2px solid transparent; border-radius: 8px; font-weight: 800; text-decoration: none; transition: transform .18s ease, background .18s ease; }
+.button:hover { transform: translateY(-2px); }
+.button-primary { color: var(--navy); background: var(--gold); }
+.button-outline { color: white; border-color: rgba(255,255,255,.55); }
+.button-light { color: var(--navy); background: white; }
+.section { padding-block: clamp(62px, 8vw, 94px); }
+.welcome-grid, .split-layout, .contact-grid, .admissions-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 55px; align-items: center; }
+.welcome-grid > p, .split-layout > div:first-child > p:not(.eyebrow), .contact-grid > div:first-child > p:not(.eyebrow) { color: var(--muted); font-size: 1.08rem; }
+.highlights { background: #fff; }
+.feature-grid, .simple-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 34px; }
+.feature-card { padding: 27px; border: 1px solid var(--line); border-radius: var(--radius); background: white; box-shadow: var(--shadow); }
+.feature-number { display: inline-block; margin-bottom: 22px; color: var(--blue); font-size: .82rem; font-weight: 900; letter-spacing: .12em; }
+.feature-card p, .simple-grid p, .info-panel p, .notice-card p { margin-bottom: 0; color: var(--muted); }
+.section-tint { background: var(--soft); }
+.info-panel { padding: 34px; border-radius: var(--radius); background: white; box-shadow: var(--shadow); }
+.panel-icon { display: inline-grid; place-items: center; width: 45px; height: 45px; margin-bottom: 18px; border-radius: 50%; color: var(--navy); background: #fff0cf; font-size: 1.3rem; }
+.text-link { display: inline-block; margin-top: 10px; font-weight: 800; text-decoration: none; }
+.section-intro { max-width: 680px; color: var(--muted); }
+.simple-grid > div { padding-top: 18px; border-top: 3px solid var(--gold); }
+.admissions { color: white; background: var(--navy); }
+.admissions h2 { color: white; }
+.admissions p:not(.eyebrow) { max-width: 620px; color: rgba(255,255,255,.8); }
+.admissions .eyebrow { color: var(--gold); }
+.admissions-inner { grid-template-columns: 1.5fr auto; }
+.notice-card { max-width: 650px; margin-top: 28px; padding: 28px; border: 1px solid var(--line); border-radius: var(--radius); background: white; }
+.notice-label { display: inline-block; margin-bottom: 12px; color: var(--blue); font-size: .76rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.contact-details { padding: 28px; border-radius: var(--radius); background: var(--soft); }
+.contact-details p { margin-bottom: 18px; }
+.contact-details p:last-child { margin-bottom: 0; }
+.contact-details strong { color: var(--navy); }
+.site-footer { padding-block: 23px; color: rgba(255,255,255,.8); background: #0b293f; font-size: .88rem; }
+.footer-inner { justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+.footer-inner p { margin: 0; }
+.footer-inner a { color: var(--gold); }
+@media (max-width: 760px) {
+  .header-inner { min-height: 68px; flex-wrap: wrap; padding-block: 10px; }
+  .menu-toggle { display: block; }
+  .site-nav { display: none; width: 100%; align-items: stretch; flex-direction: column; gap: 0; padding-bottom: 8px; }
+  .site-nav.is-open { display: flex; }
+  .site-nav a { padding: 11px 4px; }
+  .site-nav .nav-contact { margin-top: 5px; padding-inline: 13px; }
+  .welcome-grid, .split-layout, .contact-grid, .admissions-inner { grid-template-columns: 1fr; gap: 25px; }
+  .feature-grid, .simple-grid { grid-template-columns: 1fr; }
+  .hero-content { padding-block: 78px; }
+  .footer-inner { align-items: flex-start; flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}
+/* School photography gallery */
+.school-life { background:#fff; }
+.photo-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; margin-top:30px; }
+.photo-card { overflow:hidden; margin:0; border:1px solid var(--line); border-radius:var(--radius); background:#fff; box-shadow:var(--shadow); }
+.photo-card img { display:block; width:100%; height:230px; object-fit:cover; }
+.photo-card figcaption { display:flex; flex-direction:column; gap:3px; padding:17px 18px 19px; }
+.photo-card figcaption strong { color:var(--navy); }
+.photo-card figcaption span,.photo-credit { color:var(--muted); font-size:.84rem; }
+.photo-credit { margin:18px 0 0; }
+.photo-credit a { color:var(--blue); }
+@media(max-width:760px) { .photo-grid { grid-template-columns:1fr; } .photo-card img { height:220px; } }
+
+
+/* CRIPRI platform landing page */
+.brand { align-items:center; }
+.brand-subtitle { display:block; margin-top:1px; color:var(--muted); font-size:.68rem; font-weight:700; letter-spacing:.02em; }
+.platform-hero { overflow:hidden; color:var(--ink); background:linear-gradient(135deg,#f4f8fb 0%,#e8f1f6 55%,#fff8e9 100%); }
+.platform-hero-grid { display:grid; grid-template-columns:1.05fr .95fr; align-items:center; gap:55px; min-height:590px; padding-block:70px; }
+.platform-hero-copy h1 { max-width:700px; margin-bottom:22px; color:var(--navy); font-size:clamp(2.7rem,5.5vw,4.5rem); }
+.platform-lead { max-width:660px; color:#455969; font-size:1.15rem; line-height:1.75; }
+.platform-note { margin:18px 0 0; color:#647482; font-size:.86rem; }
+.button-outline-dark { color:var(--navy); border-color:#9eb2c0; background:rgba(255,255,255,.45); }
+.platform-hero-art { position:relative; display:grid; place-items:center; min-height:390px; }
+.device-window { width:min(100%,470px); overflow:hidden; padding:13px; border:1px solid #d4e0e8; border-radius:20px; background:#fff; box-shadow:0 28px 70px rgba(18,59,93,.16); transform:rotate(2deg); }
+.device-bar { display:flex; align-items:center; gap:6px; height:28px; color:#8998a4; font-size:.65rem; }
+.device-bar i { width:7px; height:7px; border-radius:50%; background:#e7b64e; }
+.device-bar i:nth-child(2) { background:#80b7a1; }.device-bar i:nth-child(3) { background:#9cb7d0; }
+.device-bar span { margin-left:9px; }
+.device-banner { display:flex; flex-direction:column; justify-content:center; min-height:225px; padding:27px; border-radius:12px; color:#fff; background:linear-gradient(115deg,rgba(9,40,63,.94),rgba(23,107,135,.72)),url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1100&q=80') center/cover; }
+.device-banner span { margin-bottom:12px; color:#f4c66c; font-size:.65rem; font-weight:800; letter-spacing:.13em; }
+.device-banner strong { font-size:clamp(1.8rem,4vw,2.8rem); line-height:1.04; }
+.device-lines { display:grid; gap:8px; padding:18px 5px 15px; }
+.device-lines i { display:block; width:80%; height:7px; border-radius:8px; background:#e8eef2; }.device-lines i:nth-child(2){width:95%}.device-lines i:nth-child(3){width:57%}
+.device-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:0 5px 5px; }
+.device-cards i { height:50px; border-radius:8px; background:#edf3f6; }
+.floating-tag { position:absolute; padding:12px 16px; border:1px solid #e2e9ed; border-radius:10px; color:var(--navy); background:#fff; box-shadow:0 12px 30px rgba(18,59,93,.12); font-size:.82rem; font-weight:800; }
+.tag-one { top:45px; right:-3px; }.tag-two { bottom:42px; left:-10px; }
+.platform-intro-grid { display:grid; grid-template-columns:.8fr 1.2fr; gap:60px; align-items:start; }
+.platform-intro-grid h2 { max-width:420px; }
+.muted-copy { color:var(--muted); }
+.platform-feature-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.process-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; margin-top:35px; }
+.process-step { padding:22px; border:1px solid var(--line); border-radius:14px; background:#fff; }
+.process-step > span { display:grid; place-items:center; width:35px; height:35px; margin-bottom:20px; border-radius:50%; color:var(--navy); background:#fff0cf; font-weight:900; }
+.process-step p { margin:0; color:var(--muted); font-size:.92rem; }
+.school-callout { display:grid; grid-template-columns:1.2fr .8fr; align-items:center; gap:45px; }
+.school-callout p:not(.eyebrow) { max-width:650px; color:var(--muted); }
+.callout-actions { display:flex; flex-direction:column; align-items:flex-start; gap:18px; }
+@media(max-width:850px) {
+  .platform-hero-grid { grid-template-columns:1fr; gap:20px; padding-block:65px; }
+  .platform-hero-art { min-height:350px; }
+  .platform-intro-grid,.school-callout { grid-template-columns:1fr; gap:22px; }
+  .process-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:760px) {
+  .platform-feature-grid { grid-template-columns:1fr; }
+  .platform-hero-copy h1 { font-size:clamp(2.55rem,12vw,3.6rem); }
+  .platform-hero-art { min-height:300px; }
+  .device-window { width:92%; }
+  .tag-one { right:0; }.tag-two { left:0; }
+}
+@media(max-width:480px) { .process-grid { grid-template-columns:1fr; }.floating-tag { font-size:.72rem; padding:9px 11px; } }
