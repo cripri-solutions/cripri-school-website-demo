@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>CRIPRI Owner Dashboard</title>
+  <link rel="stylesheet" href="owner-dashboard.css">
+</head>
+<body class="owner-dashboard-page">
+  <header class="owner-header">
+    <a class="owner-brand" href="index.html"><span class="owner-mark">C</span><span>CRIPRI Technologies<small>Owner dashboard</small></span></a>
+    <div class="owner-header-actions"><span id="owner-identity">Verifying owner access…</span><button id="owner-signout" class="owner-outline" type="button">Sign out</button></div>
+  </header>
+  <main class="owner-main">
+    <section class="owner-welcome">
+      <div><p class="owner-eyebrow">Private platform workspace</p><h1>School applications</h1><p class="owner-muted">Review applications submitted to CRIPRI Technologies. Only the authorised platform owner can access these records.</p></div>
+      <button id="owner-refresh" class="owner-outline" type="button">Refresh applications</button>
+    </section>
+    <section class="owner-stats" aria-label="Application totals">
+      <article><span>Total applications</span><strong id="count-total">—</strong></article>
+      <article><span>Pending review</span><strong id="count-pending">—</strong></article>
+      <article><span>Approved</span><strong id="count-approved">—</strong></article>
+      <article><span>Rejected</span><strong id="count-rejected">—</strong></article>
+    </section>
+    <section class="owner-panel">
+      <div class="owner-panel-heading"><div><h2>Applications received</h2><p class="owner-muted">Newest submissions appear first.</p></div><label class="owner-filter">Show <select id="owner-filter"><option value="all">All applications</option><option value="pending">Pending</option><option value="approved">Approved</option><option value="rejected">Rejected</option></select></label></div>
+      <p id="owner-dashboard-status" class="owner-status" role="status" aria-live="polite">Checking secure access…</p>
+      <div id="owner-application-list" class="owner-application-list"></div>
+    </section>
+    <section class="owner-panel owner-audit-panel">
+      <h2>Recent review history</h2>
+      <p class="owner-muted">A record is kept when an application is approved or rejected.</p>
+      <div id="owner-audit-list" class="owner-audit-list">Loading review history…</div>
+    </section>
+  </main>
+  <footer class="owner-footer">CRIPRI Technologies · Private owner workspace</footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="owner-dashboard.js"></script>
+</body>
+</html>
