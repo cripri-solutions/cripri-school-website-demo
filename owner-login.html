@@ -36,54 +36,125 @@
   </main>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js"></script>
-  <script src="owner-dashboard.js"></script>
   <script>
     (function () {
       const cfg = window.CRIPRI_SUPABASE_CONFIG;
-      const form = document.getElementById("owner-recovery-form");
-      if (!cfg || !window.supabase || !form) return;
-      const authClient = window.supabase.createClient(cfg.url, cfg.publishableKey);
+      if (!cfg || !window.supabase || !window.supabase.createClient) return;
+
+      // One Supabase client handles login, reset requests, and recovery on this page.
+      const client = window.supabase.createClient(cfg.url, cfg.publishableKey);
+      const OWNER_EMAIL = "hillaryrotich786@gmail.com";
       const login = document.getElementById("owner-login-form");
-      const status = document.getElementById("owner-recovery-status");
-      function message(value, bad) {
-        status.textContent = value;
-        status.className = "owner-status" + (bad ? " error" : " success");
+      const recovery = document.getElementById("owner-recovery-form");
+      const loginStatus = document.getElementById("owner-auth-status");
+      const recoveryStatus = document.getElementById("owner-recovery-status");
+      const loginButton = document.getElementById("owner-login-button");
+      const resetButton = document.getElementById("owner-reset-button");
+      const saveButton = document.getElementById("owner-save-password");
+
+      function showMessage(node, value, bad) {
+        node.textContent = value;
+        node.className = "owner-status" + (bad ? " error" : " success");
       }
-      authClient.auth.onAuthStateChange(function (event, session) {
+
+      async function isAuthorisedOwner(user) {
+        if (!user || (user.email || "").toLowerCase() !== OWNER_EMAIL) return false;
+        const result = await client.from("platform_reviewers")
+          .select("user_id")
+          .eq("user_id", user.id)
+          .eq("active", true)
+          .maybeSingle();
+        return !result.error && !!result.data;
+      }
+
+      login.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        const email = login.elements.email.value.trim().toLowerCase();
+        const password = login.elements.password.value;
+        if (email !== OWNER_EMAIL) {
+          showMessage(loginStatus, "This sign-in is reserved for the authorised CRIPRI owner account.", true);
+          return;
+        }
+        loginButton.disabled = true;
+        showMessage(loginStatus, "Signing in securely…", false);
+        const result = await client.auth.signInWithPassword({ email: OWNER_EMAIL, password });
+        if (result.error) {
+          showMessage(loginStatus, "Sign-in failed. Check your email and password, then try again.", true);
+          loginButton.disabled = false;
+          return;
+        }
+        if (!(await isAuthorisedOwner(result.data.user))) {
+          await client.auth.signOut();
+          showMessage(loginStatus, "This account is not authorised for the owner dashboard.", true);
+          loginButton.disabled = false;
+          return;
+        }
+        window.location.replace("owner-dashboard.html");
+      });
+
+      resetButton.addEventListener("click", async function () {
+        const email = login.elements.email.value.trim().toLowerCase();
+        if (email !== OWNER_EMAIL) {
+          showMessage(loginStatus, "Use the authorised CRIPRI owner email address.", true);
+          return;
+        }
+        resetButton.disabled = true;
+        showMessage(loginStatus, "Requesting a password reset email…", false);
+        const result = await client.auth.resetPasswordForEmail(OWNER_EMAIL, {
+          redirectTo: window.location.origin + window.location.pathname
+        });
+        showMessage(
+          loginStatus,
+          result.error
+            ? "Could not send the reset email: " + result.error.message
+            : "If the account is eligible, Supabase has sent a password reset email. Check your inbox and Spam.",
+          !!result.error
+        );
+        resetButton.disabled = false;
+      });
+
+      client.auth.onAuthStateChange(function (event, session) {
         if (event === "PASSWORD_RECOVERY" && session) {
-          form.hidden = false;
           login.hidden = true;
+          recovery.hidden = false;
+          showMessage(recoveryStatus, "Reset link verified. Enter and confirm your new password.", false);
         }
       });
-      form.addEventListener("submit", async function (event) {
+
+      recovery.addEventListener("submit", async function (event) {
         event.preventDefault();
-        const first = form.elements["new-password"].value;
-        const second = form.elements["confirm-password"].value;
-        const button = document.getElementById("owner-save-password");
-        if (first.length < 8) return message("Use at least 8 characters.", true);
-        if (first !== second) return message("The passwords do not match.", true);
-        button.disabled = true;
-        const current = await authClient.auth.getUser();
-        if (current.error || !current.data.user || current.data.user.email.toLowerCase() !== "hillaryrotich786@gmail.com") {
-          button.disabled = false;
-          return message("This reset session is not for the authorised owner account.", true);
+        const first = recovery.elements["new-password"].value;
+        const second = recovery.elements["confirm-password"].value;
+        if (first.length < 8) {
+          showMessage(recoveryStatus, "Use at least 8 characters.", true);
+          return;
         }
-        const permission = await authClient.from("platform_reviewers").select("user_id")
-          .eq("user_id", current.data.user.id).eq("active", true).maybeSingle();
-        if (permission.error || !permission.data) {
-          button.disabled = false;
-          return message("Owner access could not be verified.", true);
+        if (first !== second) {
+          showMessage(recoveryStatus, "The passwords do not match.", true);
+          return;
         }
-        const result = await authClient.auth.updateUser({ password: first });
+        saveButton.disabled = true;
+        const current = await client.auth.getUser();
+        if (current.error || !current.data.user || (current.data.user.email || "").toLowerCase() !== OWNER_EMAIL) {
+          showMessage(recoveryStatus, "This reset session is not for the authorised owner account.", true);
+          saveButton.disabled = false;
+          return;
+        }
+        if (!(await isAuthorisedOwner(current.data.user))) {
+          showMessage(recoveryStatus, "Owner access could not be verified.", true);
+          saveButton.disabled = false;
+          return;
+        }
+        const result = await client.auth.updateUser({ password: first });
         if (result.error) {
-          button.disabled = false;
-          return message("Password was not changed: " + result.error.message, true);
+          showMessage(recoveryStatus, "Password was not changed: " + result.error.message, true);
+          saveButton.disabled = false;
+          return;
         }
-        message("Password saved. Opening your owner dashboard…", false);
+        showMessage(recoveryStatus, "Password saved. Opening your owner dashboard…", false);
         window.location.replace("owner-dashboard.html");
       });
     })();
   </script>
-
 </body>
 </html>
