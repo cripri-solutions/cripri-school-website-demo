@@ -4,5 +4,5 @@
 
 window.CRIPRI_SUPABASE_CONFIG = Object.freeze({
   url: "https://dudrolmymjwphwivrlko.supabase.co",
-  publishableKey: "sb_publishable_PLYgksvgd79KTEHh21o-g_CKgUT"
+  publishableKey: "sb_publishable_PLYgkSvgd79KTEHKh21o-g_CKgUTRTY"
 });
