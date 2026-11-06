@@ -22,6 +22,15 @@
       <button class="owner-text-button" id="owner-reset-button" type="button">Send password reset email</button>
       <p id="owner-auth-status" class="owner-status" role="status" aria-live="polite"></p>
     </form>
+    <form id="owner-recovery-form" hidden>
+      <p class="owner-muted">Reset link verified. Create your new password.</p>
+      <label for="owner-new-password">New password</label>
+      <input id="owner-new-password" name="new-password" type="password" autocomplete="new-password" minlength="8" required>
+      <label for="owner-confirm-password">Confirm new password</label>
+      <input id="owner-confirm-password" name="confirm-password" type="password" autocomplete="new-password" minlength="8" required>
+      <button class="owner-primary" id="owner-save-password" type="submit">Save new password</button>
+      <p id="owner-recovery-status" class="owner-status" role="status" aria-live="polite"></p>
+    </form>
     <p class="owner-small">School applicants cannot sign in here. Access is checked again by the database.</p>
     <a class="owner-back" href="index.html">← Back to public CRIPRI website</a>
   </main>
