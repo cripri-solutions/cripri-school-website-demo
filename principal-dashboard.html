@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Secure CRIPRI school website workspace for authorised Principals.">
+  <title>Principal Workspace | CRIPRI</title>
+  <link rel="stylesheet" href="principal-dashboard.css">
+</head>
+<body class="principal-dashboard-page">
+  <header class="pd-header">
+    <a class="principal-brand" href="index.html"><span class="principal-brand-mark">C</span><span>CRIPRI Technologies<small>Principal workspace</small></span></a>
+    <div class="pd-header-actions"><span id="principal-email">Verifying account…</span><button id="principal-signout" class="pd-secondary" type="button">Sign out</button></div>
+  </header>
+  <main class="pd-main">
+    <section class="pd-welcome">
+      <div><p class="principal-eyebrow">Authorised school workspace</p><h1 id="school-heading">Preparing your school workspace…</h1><p class="principal-muted">Manage the public information for the school linked to your approved application.</p></div>
+      <span id="school-status" class="pd-status">Verifying access</span>
+    </section>
+    <p id="principal-dashboard-status" class="pd-message" role="status" aria-live="polite">Checking your verified Principal access…</p>
+    <section class="pd-school-summary">
+      <div><span>School name</span><strong id="school-name">—</strong></div>
+      <div><span>Website address name</span><strong id="school-slug">—</strong></div>
+      <div><span>Account email</span><strong id="school-account-email">—</strong></div>
+    </section>
+    <section class="pd-panel">
+      <div class="pd-panel-heading"><div><h2>School website content</h2><p class="principal-muted">Only enter information approved for public display. Changes are saved to this school's record.</p></div><span id="content-updated" class="pd-updated">Not loaded</span></div>
+      <form id="school-content-form">
+        <div class="pd-form-grid">
+          <div class="pd-field"><label for="content-motto">School motto</label><input id="content-motto" name="motto" maxlength="180"></div>
+          <div class="pd-field"><label for="content-headline">Homepage heading</label><input id="content-headline" name="headline" maxlength="180"></div>
+          <div class="pd-field pd-full"><label for="content-welcome">Welcome message</label><textarea id="content-welcome" name="welcome_message" maxlength="3000" rows="4"></textarea></div>
+          <div class="pd-field pd-full"><label for="content-about">About the school</label><textarea id="content-about" name="about" maxlength="4000" rows="5"></textarea></div>
+          <div class="pd-field"><label for="content-email">Public contact email</label><input id="content-email" name="contact_email" type="email" maxlength="254"></div>
+          <div class="pd-field"><label for="content-phone">Public contact telephone</label><input id="content-phone" name="contact_phone" type="tel" maxlength="40"></div>
+          <div class="pd-field pd-full"><label for="content-location">Public school location</label><input id="content-location" name="location" maxlength="300"></div>
+        </div>
+        <label class="pd-publish-option"><input id="content-published" type="checkbox"> Publish this content for public viewing when the public school page is enabled.</label>
+        <div class="pd-actions"><button class="pd-primary" id="save-content" type="submit">Save website content</button><a class="pd-back-link" href="index.html">Return to CRIPRI website</a></div>
+      </form>
+      <p class="pd-small">Content access is enforced by Supabase Row Level Security. This page does not use a service-role key or bypass database permissions.</p>
+    </section>
+  </main>
+  <footer class="pd-footer">CRIPRI Technologies · Secure school website workspace</footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="principal-dashboard.js"></script>
+</body>
+</html>

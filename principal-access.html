@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Secure Principal sign-in for the CRIPRI Universal School Website.">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Principal Access | CRIPRI</title>
+  <link rel="stylesheet" href="principal-dashboard.css">
+</head>
+<body class="principal-auth-page">
+  <header class="principal-auth-header">
+    <a class="principal-brand" href="index.html"><span class="principal-brand-mark">C</span><span>CRIPRI Technologies<small>Universal School Website</small></span></a>
+    <a href="index.html">Back to CRIPRI website</a>
+  </header>
+  <main class="principal-auth-wrap">
+    <section class="principal-auth-card">
+      <p class="principal-eyebrow">Secure school workspace</p>
+      <h1>Principal access</h1>
+      <p class="principal-muted">Sign in using the email address submitted in your school's approved application. New accounts must use that same email address.</p>
+      <div class="principal-auth-switch" aria-label="Account actions">
+        <button type="button" class="is-active" id="show-login">Sign in</button>
+        <button type="button" id="show-signup">Create account</button>
+      </div>
+      <form id="principal-login-form">
+        <label for="login-email">Approved application email</label>
+        <input id="login-email" name="email" type="email" maxlength="254" autocomplete="username" required>
+        <label for="login-password">Password</label>
+        <input id="login-password" name="password" type="password" autocomplete="current-password" required>
+        <button class="principal-primary" id="login-button" type="submit">Sign in securely</button>
+        <button class="principal-link-button" id="forgot-password" type="button">Forgot your password?</button>
+      </form>
+      <form id="principal-signup-form" hidden>
+        <label for="signup-email">Email used in the approved school application</label>
+        <input id="signup-email" name="email" type="email" maxlength="254" autocomplete="email" required>
+        <label for="signup-password">Create password</label>
+        <input id="signup-password" name="password" type="password" minlength="8" autocomplete="new-password" required>
+        <label for="signup-confirm">Confirm password</label>
+        <input id="signup-confirm" name="confirm_password" type="password" minlength="8" autocomplete="new-password" required>
+        <button class="principal-primary" id="signup-button" type="submit">Create Principal account</button>
+        <p class="principal-help">Your school must already have an approved application. Account creation alone does not activate a school.</p>
+      </form>
+      <form id="principal-recovery-form" hidden>
+        <p class="principal-muted">Password reset link verified. Choose a new password.</p>
+        <label for="recovery-password">New password</label>
+        <input id="recovery-password" name="password" type="password" minlength="8" autocomplete="new-password" required>
+        <label for="recovery-confirm">Confirm new password</label>
+        <input id="recovery-confirm" name="confirm_password" type="password" minlength="8" autocomplete="new-password" required>
+        <button class="principal-primary" id="recovery-button" type="submit">Save new password</button>
+      </form>
+      <p id="principal-auth-status" class="principal-status" role="status" aria-live="polite"></p>
+      <p class="principal-auth-foot">Access is verified by Supabase against the approved school application. Each Principal can access only the school authorised for their account.</p>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="principal-access.js"></script>
+</body>
+</html>
